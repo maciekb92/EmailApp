@@ -8,7 +8,7 @@ public class Email {
     private String password;
     private String department;
     private String email;
-    private int mailboxCapacity;
+    private int mailboxCapacity = 500;
     private int defaultPasswordLength = 10;
     private String alternateEmail;
     private String companySuffix = "company.com";
@@ -16,13 +16,9 @@ public class Email {
     public Email(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
-        System.out.println("First name: " + this.firstName + ", Last name: " + this.lastName);
         this.department = setDepartment();
-        System.out.println("Department: " + this.department);
         this.password = randomPassword(defaultPasswordLength);
-        System.out.println("Password: " + this.password);
-        email = this.firstName.toLowerCase() + "." + this.lastName.toLowerCase() + "@" + this.department.toLowerCase() + "." + companySuffix;
-        System.out.println("Email: " + email);
+        this.email = firstName.toLowerCase() + "." + lastName.toLowerCase() + "@" + this.department.toLowerCase() + "." + this.companySuffix;
     }
 
     private String setDepartment() {
@@ -49,5 +45,33 @@ public class Email {
             password[i] = passwordSet.charAt(rand);
         }
         return new String(password);
+    }
+
+    public void setMailboxCapacity(int capacity) {
+        this.mailboxCapacity = capacity;
+    }
+
+    public void setAlternateEmail(String alternateEmail) {
+        this.alternateEmail = alternateEmail;
+    }
+
+    public void changePassword(String password) {
+        this.password = password;
+    }
+
+    public int getMailboxCapacity() {
+        return mailboxCapacity;
+    }
+
+    public String getAlternateEmail() {
+        return alternateEmail;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void printInfo() {
+        System.out.println("Employee name: " + firstName + " " + lastName + ", Department: " + department + ", Email: " + email + ", Password: " + password + ", Mailbox capacity: " + mailboxCapacity + "MB");
     }
 }
